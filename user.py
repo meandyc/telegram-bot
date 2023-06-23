@@ -2,23 +2,20 @@
 
 class User:
 
-    def __init__(self, update_id, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None,
-                 chosen_inline_result=None, callback_query=None, shipping_query=None, pre_checkout_query=None, poll=None, poll_answer=None,
-                 my_chat_member=None, chat_member=None, chat_join_request=None):
+    def __init__(self, id=None, is_bot=None, first_name=None, last_name=None, username=None, language_code=None, is_premium=None,
+                 added_to_attachment_menu=None, can_join_groups=None, can_read_all_group_messages=None, supports_inline_queries=None):
         """
+        This object represents a Telegram user or bot.
         """
-        self.update_id = update_id
-        self.edited_message = edited_message
-        self.channel_post = channel_post
-        self.edited_channel_post = edited_channel_post
-        self.inline_query = inline_query
-        self.chosen_inline_result = chosen_inline_result
-        self.callback_query = callback_query
-        self.shipping_query = shipping_query
-        self.pre_checkout_query = pre_checkout_query
-        self.poll = poll
-        self.poll_answer = poll_answer
-        self.my_chat_member = my_chat_member
-        self.chat_member = chat_member
-        self.chat_join_request = chat_join_request
+        self.id = id
+        self.is_bot = is_bot
+        self.first_name = first_name
+        self.last_name = last_name
+        self.username = username
+        self.language_code = language_code
+        self.is_premium = is_premium
+        self.added_to_attachment_menu = added_to_attachment_menu
+        self.can_join_groups = can_join_groups
+        self.can_read_all_group_messages = can_read_all_group_messages
+        self.supports_inline_queries = supports_inline_queries
         
