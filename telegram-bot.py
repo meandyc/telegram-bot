@@ -7,9 +7,8 @@ from pprint import pprint
 class TelegramBot:
     def __init__(self):
         self.API_URL = 'https://api.telegram.org/bot'
-        with open('/home/andy/Documents/Python/telegram-bot/.telegram-api-token', 'r') as f:
-            self.API_ID = f.read()
-        self.updates_offset = None
+        with open('/home/andy/.telegram-bot/.telegram-api-token', 'r') as f:
+            self.API_ID = f.readline()
     
     def get_updates(self):
         """
@@ -17,14 +16,12 @@ class TelegramBot:
         Returns an Array of Update objects.
         """
         url = self.API_URL + self.API_ID + '/getUpdates'
-        params = {'offset': self.updates_offset, 'timeout': 2}
-        response = requests.get(url, offset=self.updates_offset)
+        response = requests.get(url)
         if response.status_code == 200:
             updates = json.loads(response.text)
             if updates['ok']:
                 result = updates['result']
-                self.updates_offset = result[-1]['update_id'] + 1
-                return result
+                pprint(result)
         else:
             print('Failed getting updates')
 
@@ -50,7 +47,7 @@ class TelegramBot:
                 else:
                     print(f'Couldn\'t delete the message "{text} {chat_id} {message_id}".')
 
-    def send_message(self, chat_id='969768646', msg='Test message. Telegram API'):
+    def send_message(self, chat_id='969768646', msg='Test message. Telegram API.'):
         """
         Use this method to send text messages. On success, the sent Message is returned.
         """
@@ -71,4 +68,4 @@ if __name__ == '__main__':
     
     bot = TelegramBot()
     # bot.send_message(-991250963)
-    bot.remove_banned_words(bot.get_updates())
+    bot.get_updates()
